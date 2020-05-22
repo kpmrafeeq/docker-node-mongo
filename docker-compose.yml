@@ -12,7 +12,9 @@ services:
     container_name: mongo
     image: mongo
     restart: always
-    volumes:
-      - ./mongo-volume:/mnt/db
+    volumeMounts:
+        - name: data
+          mountPath: /mnt/db
+          subPath: data
     ports:
       - '27017:27017'
