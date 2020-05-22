@@ -13,6 +13,6 @@ services:
     image: mongo
     restart: always
     volumes:
-         - data:/mnt/db
+      - /mnt/db
     ports:
       - '27017:27017'
