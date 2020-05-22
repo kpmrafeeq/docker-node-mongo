@@ -13,10 +13,10 @@ services:
     image: mongo
     restart: always
     volumes:
-      - mongodb:/mnt/db
-      - mongodb_config:/mnt/db
+      - db-data:/mnt/db/data
+      - mongo-config:/mnt/db/config
     ports:
       - '27017:27017'
 volumes:
-  mongodb:
-  mongodb_config:
+  db-data:
+  mongo-config:
