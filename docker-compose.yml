@@ -19,6 +19,8 @@ services:
       - MONGO_INITDB_DATABASE=todo
       - MONGO_INITDB_ROOT_USERNAME=usertodo
       - MONGO_INITDB_ROOT_PASSWORD=usertodoPassword1
+    ports:
+        - 27017:27017
     volumes:
       - ./.docker/mongodb/mongod.conf:/etc/mongod.conf
       - ./.docker/mongodb/initdb.d/:/docker-entrypoint-initdb.d/
