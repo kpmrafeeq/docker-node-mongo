@@ -8,9 +8,28 @@ services:
       - '80:3000'
     links:
       - mongo
+    networks:
+        clusternetwork:
+          ipv4_address: 172.16.0.13
   mongo:
     container_name: mongo
     image: mongo
     restart: always
+    environment: 
+      - MONGO_INITDB_DATABASAE=todo
+      - MONGO_INITDB_ROOT_USERNAME=usertodo
+      - MONGO_INITDB_ROOT_PASSWORD=usertodoPassword1
     volumes:
-      - /mnt/db:/data/db
+      - ./.docker/mongodb/mongod.conf:/etc/mongod.conf
+      - ./.docker/mongodb/initdb.d/:/docker-entrypoint-initdb.d/
+    command: ["-f", "/etc/mongod.conf"]
+    networks:
+      clusternetwork:
+        ipv4_address: 172.16.0.14
+networks:
+  clusternetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.0/24
