@@ -13,7 +13,7 @@ services:
           ipv4_address: 172.16.0.13
   mongo:
     container_name: mongo
-    image: mongo
+    image: mongo:latest
     restart: always
     environment: 
       - MONGO_INITDB_DATABASE=todo
